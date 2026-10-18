@@ -9,8 +9,12 @@
     <meta property="og:title" content="The Shield — La Saga Angélia" />
     <meta property="og:description" content="Un roman fantasy sombre et céleste. Découvre l'univers d'Angélia, ses personnages et ses légendes." />
     <meta name="theme-color" content="#0a120e" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M50 4 L92 20 C92 68, 74 102, 50 116 C26 102, 8 68, 8 20 Z' fill='%230a120e' stroke='%23d4b06a' stroke-width='6'/%3E%3Cpath d='M50 32 C43 44, 42 58, 47 72 L50 82 L53 72 C58 58, 57 44, 50 32 Z' fill='%23e8cf9a'/%3E%3C/svg%3E" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M11.5 15.5 C30 11.5, 69 12, 88.5 14.5 L89.5 45 C89 75.5, 71.5 99, 50.5 114 C28.5 99.5, 10.5 76, 10.8 44.5 Z' fill='%230f1a14' stroke='%23d4b06a' stroke-width='6'/%3E%3Cpath d='M57 30.5 C44 29.5, 33.5 38, 33.5 49.5 C33.5 61.5, 44 69.5, 57.5 68.5 C48 65.5, 43 58.5, 43 49.5 C43 40.5, 48.5 33.5, 57 30.5 Z' fill='%23d4b06a'/%3E%3C/svg%3E" />
     <style>
+      @font-face { font-family: "Cinzel"; font-weight: 400; font-style: normal; font-display: swap;
+        src: url("fonts/cinzel-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Cinzel"; font-weight: 600; font-style: normal; font-display: swap;
+        src: url("fonts/cinzel-latin-600-normal.woff2") format("woff2"); }
       :root {
         --nuit: #0a120e;          /* noir-vert nuit */
         --nuit-2: #0f1a14;        /* panneau */
@@ -22,6 +26,7 @@
         --ivoire: #ece7db;         /* blanc cassé */
         --ivoire-2: #b9b4a8;       /* texte secondaire */
         --sang: #c4727a;           /* accent discret (plus lisible) */
+        --titre: "Cinzel", Georgia, "Times New Roman", serif;
       }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html { scroll-behavior: smooth; }
@@ -49,7 +54,7 @@
         border-bottom: 1px solid rgba(212, 176, 106, 0.35);
         backdrop-filter: blur(6px);
       }
-      .sigle { font-size: 1.2rem; color: var(--or); font-variant: small-caps; letter-spacing: 0.12em; }
+      .sigle { font-family: var(--titre); font-size: 1.2rem; color: var(--or); letter-spacing: 0.12em; }
       nav ul { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
       nav a {
         color: var(--ivoire-2); text-decoration: none; font-size: 0.92rem;
@@ -61,24 +66,29 @@
       .page.active { display: block; }
       /* ===== HERO ===== */
       header { text-align: center; padding: 5.5rem 1.5rem 4.5rem; border-bottom: 1px solid rgba(212, 176, 106, 0.25); }
-      .sur-titre { font-variant: small-caps; letter-spacing: 0.42em; color: var(--celadon); font-size: 0.9rem; }
+      .sur-titre { font-family: var(--titre); letter-spacing: 0.42em; color: var(--celadon); font-size: 0.9rem; }
       h1 {
-        font-weight: normal; font-size: clamp(2.4rem, 7vw, 4rem);
-        letter-spacing: 0.04em; line-height: 1.2; color: var(--ivoire); margin: 0.8rem 0 0.4rem;
+        font-family: var(--titre); font-weight: 600; font-size: clamp(2.1rem, 6.2vw, 3.4rem);
+        letter-spacing: 0.08em; line-height: 1.2; color: var(--ivoire); margin: 0.8rem 0 0.4rem;
       }
       h1 em { color: var(--or); font-style: normal; }
+      .genres {
+        font-family: var(--titre); font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--celadon); margin: 0.4rem auto 0; padding-top: 0.9rem; max-width: 560px;
+        border-top: 1px solid rgba(212, 176, 106, 0.35); display: table;
+      }
       .sous-titre { max-width: 620px; margin: 1.4rem auto 2.6rem; color: var(--ivoire-2); font-style: italic; font-size: 1.05rem; }
-      .cta {
+      .cta { font-family: var(--titre);
         display: inline-block; padding: 0.85rem 2.2rem; margin: 0.3rem 0.5rem;
         border: 1px solid var(--or); color: var(--or-clair); background: none;
-        text-decoration: none; letter-spacing: 0.16em; font-variant: small-caps;
-        transition: all 0.25s; cursor: pointer; font-family: inherit; font-size: 1rem;
+        text-decoration: none; letter-spacing: 0.16em;
+        transition: all 0.25s; cursor: pointer; font-size: 0.88rem;
       }
       .cta:hover { background: var(--or); color: var(--nuit); }
       .cta.vert { border-color: var(--celadon-2); color: var(--celadon); }
       .cta.vert:hover { background: var(--celadon-2); color: var(--nuit); }
       /* bouclier doré */
-      .bouclier { width: 120px; height: auto; margin: 0 auto 1.4rem; display: block; filter: drop-shadow(0 4px 10px rgba(212,176,106,0.25)); }
+      .bouclier { width: 140px; height: auto; margin: 0 auto 1.4rem; display: block; }
       .couverture {
         display: block; width: min(250px, 70%); height: auto;
         margin: 0 auto 1.2rem; padding: 6px; background: var(--nuit-2);
@@ -95,17 +105,16 @@
       }
       .barre-wiki input:focus { border-color: var(--celadon); }
       .filtres { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
-      .filtre {
+      .filtre { font-family: var(--titre);
         padding: 0.4rem 1.2rem; background: none; cursor: pointer;
-        border: 1px solid rgba(212, 176, 106, 0.35); color: var(--ivoire-2);
-        font-family: inherit; font-variant: small-caps; letter-spacing: 0.1em;
+        border: 1px solid rgba(212, 176, 106, 0.35); color: var(--ivoire-2); letter-spacing: 0.1em;
         font-size: 0.88rem; transition: all 0.2s;
       }
       .filtre.actif, .filtre:hover { background: rgba(212, 176, 106, 0.15); border-color: var(--or); color: var(--or-clair); }
       /* ===== SECTIONS COMMUNES ===== */
       section { max-width: 880px; margin: 0 auto; padding: 3.5rem 1.5rem; }
       h2 {
-        font-weight: normal; font-size: 1.8rem; font-variant: small-caps;
+        font-family: var(--titre); font-weight: 600; font-size: 1.5rem;
         letter-spacing: 0.14em; color: var(--celadon); text-align: center; margin-bottom: 0.4rem;
       }
       .filet { width: 100%; margin: 0.8rem auto 2.4rem; color: var(--or); display: block; height: 16px; }
@@ -131,16 +140,16 @@
         transition: transform 0.2s, border-color 0.2s;
       }
       .fiche-perso:hover { transform: translateY(-4px); border-top-color: var(--or); }
-      .fiche-perso h3 { font-variant: small-caps; font-weight: normal; font-size: 1.35rem; color: var(--ivoire); letter-spacing: 0.06em; }
-      .role { font-size: 0.78rem; color: var(--celadon); letter-spacing: 0.18em; text-transform: uppercase; margin: 0.2rem 0 1rem; }
+      .fiche-perso h3 { font-family: var(--titre); font-weight: normal; font-size: 1.35rem; color: var(--ivoire); letter-spacing: 0.06em; }
+      .role { font-family: var(--titre); font-size: 0.78rem; color: var(--celadon); letter-spacing: 0.18em; text-transform: uppercase; margin: 0.2rem 0 1rem; }
       .citation { font-style: italic; color: var(--or-clair); font-size: 0.95rem; border-left: 2px solid var(--or); padding-left: 1rem; margin-bottom: 1rem; }
       .trait { font-size: 0.95rem; color: var(--ivoire-2); margin-bottom: 0.4rem; }
       .trait strong { color: var(--celadon); font-weight: normal; }
       /* Secrets (spoilers) : à n'ajouter dans une fiche que lorsqu'il y en a un */
-      .btn-secret {
+      .btn-secret { font-family: var(--titre);
         width: 100%; margin-top: 0.9rem; padding: 0.6rem; background: none; cursor: pointer;
         border: 1px dashed var(--sang); color: var(--sang);
-        font-family: inherit; font-size: 0.82rem; font-variant: small-caps; letter-spacing: 0.12em;
+        font-size: 0.82rem; letter-spacing: 0.12em;
         transition: all 0.2s;
       }
       .btn-secret:hover { background: rgba(163, 74, 80, 0.12); }
@@ -153,7 +162,7 @@
         border-left: 3px solid var(--or); padding: 1.6rem 1.5rem;
       }
       .fiche .ref { font-size: 0.7rem; letter-spacing: 0.25em; color: var(--celadon); text-transform: uppercase; margin-bottom: 0.6rem; }
-      .fiche h3 { font-variant: small-caps; font-weight: normal; font-size: 1.18rem; color: var(--ivoire); margin-bottom: 0.6rem; }
+      .fiche h3 { font-family: var(--titre); font-weight: normal; font-size: 1.18rem; color: var(--ivoire); margin-bottom: 0.6rem; }
       .fiche p { font-size: 0.94rem; color: var(--ivoire-2); }
       /* ===== NOUVELLES ===== */
       .liste-nouvelles { list-style: none; max-width: 640px; margin: 0 auto; }
@@ -162,9 +171,9 @@
         background: var(--nuit-3); border: 1px solid rgba(167, 196, 181, 0.15);
         display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap;
       }
-      .liste-nouvelles h3 { font-weight: normal; font-variant: small-caps; font-size: 1.1rem; color: var(--celadon); letter-spacing: 0.05em; }
+      .liste-nouvelles h3 { font-family: var(--titre); font-weight: normal; font-size: 1.1rem; color: var(--celadon); letter-spacing: 0.05em; }
       .liste-nouvelles p { font-size: 0.9rem; color: var(--ivoire-2); font-style: italic; }
-      .bientot { color: var(--or); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
+      .bientot { font-family: var(--titre); color: var(--or); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
       /* ===== NEWSLETTER (Brevo) ===== */
       #section-newsletter { text-align: center; }
       .boite-news { background: var(--nuit-2); border: 1px solid rgba(212, 176, 106, 0.4); padding: 3rem 1.6rem; max-width: 640px; margin: 0 auto; }
@@ -179,9 +188,9 @@
         font-family: inherit; font-size: 1rem; outline: none;
       }
       input[type="email"]:focus { border-color: var(--celadon); }
-      button.envoyer {
+      button.envoyer { font-family: var(--titre);
         padding: 0.8rem 2rem; background: var(--or); border: none; cursor: pointer;
-        color: var(--nuit); font-family: inherit; font-variant: small-caps;
+        color: var(--nuit);
         letter-spacing: 0.15em; font-size: 1rem; transition: background 0.2s;
       }
       button.envoyer:hover { background: var(--or-clair); }
@@ -208,10 +217,10 @@
       .piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
       .boite-contact button.envoyer { align-self: center; }
       .charte { max-width: 640px; margin: 2.2rem auto 0; padding: 1.4rem 1.5rem; border-left: 3px solid var(--or); background: var(--nuit-3); font-size: 0.92rem; color: var(--ivoire-2); }
-      .charte h3 { font-weight: normal; font-variant: small-caps; letter-spacing: 0.08em; color: var(--celadon); font-size: 1.1rem; margin-bottom: 0.4rem; }
+      .charte h3 { font-family: var(--titre); font-weight: normal; letter-spacing: 0.08em; color: var(--celadon); font-size: 1.1rem; margin-bottom: 0.4rem; }
       /* ===== MENTIONS LÉGALES ===== */
       .legal { max-width: 720px; margin: 0 auto; text-align: left; }
-      .legal h3 { font-weight: normal; font-variant: small-caps; letter-spacing: 0.08em; color: var(--celadon); font-size: 1.2rem; margin: 2rem 0 0.5rem; }
+      .legal h3 { font-family: var(--titre); font-weight: normal; letter-spacing: 0.08em; color: var(--celadon); font-size: 1.2rem; margin: 2rem 0 0.5rem; }
       .legal p, .legal li { font-size: 0.95rem; color: var(--ivoire-2); margin-bottom: 0.6rem; }
       .legal ul { padding-left: 1.3rem; }
       .legal a, .consentement a { color: var(--celadon); }
@@ -246,24 +255,31 @@
         <div class="etoile" style="top:38%;left:65%;width:2px;height:2px"></div>
 
         <svg class="bouclier" viewBox="0 0 100 120" fill="none" aria-hidden="true">
-          <path d="M50 4 L92 20 C92 68, 74 102, 50 116 C26 102, 8 68, 8 20 Z"
-                stroke="#d4b06a" stroke-width="3" fill="rgba(212,176,106,0.06)"/>
-          <path d="M50 14 L83 26 C83 64, 69 93, 50 105 C31 93, 17 64, 17 26 Z"
-                stroke="#d4b06a" stroke-width="1" fill="none" opacity="0.5"/>
-          <path d="M50 32 C43 44, 42 58, 47 72 L50 82 L53 72 C58 58, 57 44, 50 32 Z"
-                stroke="#e8cf9a" stroke-width="2.2" fill="rgba(232,207,154,0.12)"/>
-          <path d="M50 38 C46 48, 45.5 58, 48 70" stroke="#a7c4b5" stroke-width="1" fill="none"/>
-          <circle cx="50" cy="24" r="1.8" fill="#e8cf9a"/>
-          <circle cx="38" cy="50" r="1.4" fill="#e8cf9a" opacity="0.7"/>
-          <circle cx="62" cy="58" r="1.4" fill="#e8cf9a" opacity="0.7"/>
+  <!-- contour irrégulier, tracé à la main -->
+  <path d="M11.5 15.5 C30 11.5, 69 12, 88.5 14.5 L89.5 45 C89 75.5, 71.5 99, 50.5 114 C28.5 99.5, 10.5 76, 10.8 44.5 Z"
+        fill="#0f1a14" stroke="#d4b06a" stroke-width="2.4" stroke-linejoin="round"/>
+  <!-- filet intérieur interrompu, comme gravé -->
+  <path d="M18 22 C34 19.5, 52 19.5, 63 20.2" fill="none" stroke="#d4b06a" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+  <path d="M69 20.5 L82.2 22 L82.8 44.5 C82.5 69, 68 89, 50.5 102" fill="none" stroke="#d4b06a" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+  <path d="M50.5 102 C34 90, 18.5 70, 18.3 45 L18 26" fill="none" stroke="#d4b06a" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+  <!-- croissant de lune -->
+  <path d="M57 30.5 C44 29.5, 33.5 38, 33.5 49.5 C33.5 61.5, 44 69.5, 57.5 68.5 C48 65.5, 43 58.5, 43 49.5 C43 40.5, 48.5 33.5, 57 30.5 Z"
+        fill="#d4b06a"/>
+  <!-- petite étoile (quatre branches) -->
+  <path d="M62.5 41 L64 46 L69 47.5 L64 49 L62.5 54 L61 49 L56 47.5 L61 46 Z" fill="#e8cf9a"/>
+  <!-- deux feuilles céladon -->
+  <path d="M50.5 96 C50.5 88, 50.5 80, 50.5 74" fill="none" stroke="#a7c4b5" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M50.5 88 C42 87, 37 82, 36 76 C44 77, 49 81, 50.5 88 Z" fill="#a7c4b5"/>
+  <path d="M50.5 84 C58 83, 63 78.5, 64.5 72.5 C57 73.5, 52 77.5, 50.5 84 Z" fill="#7fae98"/>
         </svg>
 
         <p class="sur-titre">Ariane White présente la Saga Angélia</p>
         <h1>The Shield <em>— Tome I —</em></h1>
+        <p class="genres">Fantasy · Anges &amp; démons · Guerre · Pouvoir · Romance</p>
         <p class="sous-titre">
           Dans un monde marqué par le déséquilibre, une petite équipe
-          essaye de tout changer. Avec, à la clé, un plan audacieux :
-          réussir là où même les dieux ont échoué. Sans aucune pression !
+          essaye de tout changer. Avec, à la clé, un plan audacieux&nbsp;:
+          réussir là où même les dieux ont échoué. Sans aucune pression&nbsp;!
         </p>
         <a class="cta" href="#newsletter">Rejoindre les premiers lecteurs</a>
         <button class="cta vert" id="btn-prologue" type="button">Lire un extrait</button>
@@ -271,7 +287,7 @@
         <div id="bloc-prologue" style="display:none; max-width:720px; margin:3rem auto 0;">
           <div class="page-herbier">
             <p>Il était une fois…</p>
-            <p>Dans une légende obscure, remontant bien avant la création de l'espèce humaine, le monde était scindé en deux camps éternels : l'Ombre et la Lumière. À leur tête se trouvaient deux entités puissantes et opposées : Satan, maître des ténèbres, et Dieu, souveraine de la lumière.</p>
+            <p>Dans une légende obscure, remontant bien avant la création de l'espèce humaine, le monde était scindé en deux camps éternels&nbsp;: l'Ombre et la Lumière. À leur tête se trouvaient deux entités puissantes et opposées&nbsp;: Satan, maître des ténèbres, et Dieu, souveraine de la lumière.</p>
             <p>
               Dieu avait bâti un havre de paix et de prospérité, où elle et les anges vivaient en harmonie. Ils veillaient à maintenir l'équilibre entre le bien et le mal. Sous l'ordre de leur maîtresse, ils surveillaient l'ordre universel contre Satan et ses démons.
             </p>
@@ -329,14 +345,14 @@
           <div class="fiche-perso" data-cat="anges" data-nom="Khamael">
             <h3>Khamael</h3>
             <p class="role">Ange puissant — professeur à l'Académie de l'Horizon</p>
-            <p class="citation">« Alors, qui veut essayer de perdre un doigt aujourd'hui ? »</p>
+            <p class="citation">«&nbsp;Alors, qui veut essayer de perdre un doigt aujourd'hui&nbsp;?&nbsp;»</p>
             <p class="trait"><strong>Portrait.</strong> Voûté, un œil caché sous un bandeau de cuir, les mains couvertes de cicatrices fines comme des dizaines de petites brûlures anciennes.</p>
           </div>
 
           <div class="fiche-perso" data-cat="anges" data-nom="Dahlia">
             <h3>Dahlia</h3>
             <p class="role">Ange gardien</p>
-            <p class="citation">« J'ai grandi avec les Cerfs-Volants, et on me racontait, petite, une légende de leur peuple. »</p>
+            <p class="citation">«&nbsp;J'ai grandi avec les Cerfs-Volants, et on me racontait, petite, une légende de leur peuple.&nbsp;»</p>
             <p class="trait"><strong>Portrait.</strong> Une femme de plutôt petite taille, la peau noire, les yeux et les cheveux bruns — des cheveux tressés, longs. Douce et timide, mais de celles qui ne reculent jamais quand il le faut.</p>
           </div>
 
@@ -353,8 +369,8 @@
           </div>
 
           <!--
-            MODÈLE POUR AJOUTER UN SECRET (spoiler) À UNE FICHE :
-            colle ces deux lignes à la fin de la fiche, juste avant son </div> :
+            MODÈLE POUR AJOUTER UN SECRET (spoiler) À UNE FICHE&nbsp;:
+            colle ces deux lignes à la fin de la fiche, juste avant son </div>&nbsp;:
               <button class="btn-secret" type="button">Révéler un secret (spoiler)</button>
               <div class="secret">Ton texte secret ici.</div>
           -->
@@ -362,7 +378,7 @@
         </div>
         <p class="mention" id="wiki-vide" hidden style="margin-top:2rem;">Aucune fiche pour le moment dans cette catégorie — elles arrivent avec les nouvelles. 🕯️</p>
         <p class="mention" style="margin-top:2.5rem;">
-          Ce wiki s'enrichira au fil des nouvelles : les personnages des histoires
+          Ce wiki s'enrichira au fil des nouvelles&nbsp;: les personnages des histoires
           parallèles y auront leur fiche, eux aussi. 🕯️
         </p>
       </section>
@@ -386,12 +402,12 @@
           <div class="fiche">
             <p class="ref">Mystère</p>
             <h3>Les Runes</h3>
-            <p>Que peuvent-elles bien être ? Si mystérieuses et si peu connues.</p>
+            <p>Que peuvent-elles bien être&nbsp;? Si mystérieuses et si peu connues.</p>
           </div>
           <div class="fiche">
             <p class="ref">Lieu</p>
             <h3>Le Pilier du Sommet</h3>
-            <p>Une grande tour qui s'élève vers les cieux sans jamais les atteindre. C'est le lieu où veillent les Clairvoyants. Auriez-vous le courage d'y pénétrer ?</p>
+            <p>Une grande tour qui s'élève vers les cieux sans jamais les atteindre. C'est le lieu où veillent les Clairvoyants. Auriez-vous le courage d'y pénétrer&nbsp;?</p>
           </div>
         </div>
       </section>
@@ -408,7 +424,7 @@
         </svg>
         <ul class="liste-nouvelles">
           <li>
-            <div><h3>Frida</h3><p>Frida, artisane ébéniste, reçoit d'un Clairvoyant une commande singulière : une amulette.</p></div>
+            <div><h3>Frida</h3><p>Frida, artisane ébéniste, reçoit d'un Clairvoyant une commande singulière&nbsp;: une amulette.</p></div>
             <span class="bientot">À paraître</span>
           </li>
         </ul>
@@ -427,7 +443,7 @@
         </svg>
         <div class="boite-news">
           <p class="accroche">
-            Angélia n'est pas encore ouverte à tous. Rejoins les premiers lecteurs :
+            Angélia n'est pas encore ouverte à tous. Rejoins les premiers lecteurs&nbsp;:
             tu seras averti avant tout le monde — sans spam, promis.
           </p>
           <ul class="liste-points">
@@ -439,14 +455,14 @@
           <!--
             ⬇⬇⬇ À REMPLACER PAR LE FORMULAIRE BREVO ⬇⬇⬇
             Une fois ton compte Brevo créé, remplace tout le bloc <form>…</form>
-            (et la ligne « note-brevo » ci-dessous) par le code d'intégration que Brevo te fournit.
+            (et la ligne «&nbsp;note-brevo&nbsp;» ci-dessous) par le code d'intégration que Brevo te fournit.
           -->
           <form id="form-newsletter">
             <input type="email" id="email" placeholder="ton.adresse@exemple.com" aria-label="Ton adresse e-mail" required />
             <button type="submit" class="envoyer">S'abonner</button>
           </form>
           <p class="message-merci" id="merci" role="status"></p>
-          <p class="note-brevo">Démo : ce formulaire ne collecte rien. Il sera branché sur ta liste Brevo.</p>
+          <p class="note-brevo">Démo&nbsp;: ce formulaire ne collecte rien. Il sera branché sur ta liste Brevo.</p>
         </div>
       </section>
     </div>
@@ -483,7 +499,7 @@
               <label for="c-message">Ton message</label>
               <textarea id="c-message" name="message" required></textarea>
             </div>
-            <!-- piège anti-spam : les vrais visiteurs ne le voient pas -->
+            <!-- piège anti-spam&nbsp;: les vrais visiteurs ne le voient pas -->
             <div class="piege" aria-hidden="true">
               <label for="c-gotcha">Ne pas remplir</label>
               <input type="text" id="c-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
@@ -501,7 +517,7 @@
           <h3>Fanarts &amp; charte des fans</h3>
           <p>
             Les fanarts sont les bienvenus. Merci de les garder non commerciaux, de ne pas modifier les textes de l'autrice
-            et de toujours créditer l'artiste. Propose le tien via le formulaire ci-dessus (sujet « Proposer un fanart ») :
+            et de toujours créditer l'artiste. Propose le tien via le formulaire ci-dessus (sujet «&nbsp;Proposer un fanart&nbsp;»)&nbsp;:
             la galerie ouvrira à la sortie du livre.
           </p>
         </div>
@@ -518,10 +534,10 @@
           <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
         </svg>
         <div class="legal">
-          <p><em>Dernière mise à jour : 18 octobre 2026.</em></p>
+          <p><em>Dernière mise à jour&nbsp;: 18 octobre 2026.</em></p>
 
           <h3>Éditrice du site</h3>
-          <p>Ce site est un site personnel, non commercial, édité par Ariane White (pseudonyme de l'autrice), qui en est aussi la directrice de la publication. Conformément à la loi, son identité complète est communiquée à l'hébergeur. Pour la contacter : <a href="#contact">formulaire de contact</a>.</p>
+          <p>Ce site est un site personnel, non commercial, édité par Ariane White (pseudonyme de l'autrice), qui en est aussi la directrice de la publication. Conformément à la loi, son identité complète est communiquée à l'hébergeur. Pour la contacter&nbsp;: <a href="#contact">formulaire de contact</a>.</p>
 
           <h3>Hébergement</h3>
           <p>Le site est hébergé par GitHub, Inc. (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
@@ -529,10 +545,10 @@
           <h3>Propriété intellectuelle</h3>
           <p>Les textes, l'univers d'Angélia, les personnages, les noms, les extraits et les visuels du site sont protégés par le droit d'auteur. © Ariane White — tous droits réservés. Toute reproduction ou adaptation sans autorisation écrite est interdite. Les fanarts non commerciaux sont toutefois les bienvenus, dans le respect de la charte des fans (page Contact).</p>
 
-          <h3>Données personnelles : ce que je collecte</h3>
+          <h3>Données personnelles&nbsp;: ce que je collecte</h3>
           <ul>
-            <li><strong>Formulaire de contact</strong> : ton nom ou pseudo, ton adresse e-mail et ton message, uniquement pour te répondre. Base légale : ton consentement. Les messages sont transmis par le service Formspree (États-Unis) et conservés au plus 12 mois après le dernier échange.</li>
-            <li><strong>Newsletter</strong> : ton adresse e-mail, pour t'envoyer des nouvelles de la Saga Angélia (sortie du livre, nouvelles, coulisses). Base légale : ton consentement. Les adresses sont gérées par Brevo (société française) et conservées jusqu'à ta désinscription.</li>
+            <li><strong>Formulaire de contact</strong>&nbsp;: ton nom ou pseudo, ton adresse e-mail et ton message, uniquement pour te répondre. Base légale&nbsp;: ton consentement. Les messages sont transmis par le service Formspree (États-Unis) et conservés au plus 12 mois après le dernier échange.</li>
+            <li><strong>Newsletter</strong>&nbsp;: ton adresse e-mail, pour t'envoyer des nouvelles de la Saga Angélia (sortie du livre, nouvelles, coulisses). Base légale&nbsp;: ton consentement. Les adresses sont gérées par Brevo (société française) et conservées jusqu'à ta désinscription.</li>
           </ul>
           <p>Aucune donnée n'est vendue, ni cédée à des fins publicitaires.</p>
 
@@ -540,7 +556,7 @@
           <p>Tu peux à tout moment demander l'accès à tes données, leur correction ou leur suppression, retirer ton consentement ou t'opposer à leur usage. Pour la newsletter, chaque e-mail contient un lien de désinscription. Pour toute autre demande, écris-moi via le <a href="#contact">formulaire de contact</a>. Si tu estimes que tes droits ne sont pas respectés, tu peux saisir la CNIL (cnil.fr).</p>
 
           <h3>Cookies et suivi</h3>
-          <p>Ce site n'utilise ni cookies de suivi, ni outil de statistiques, ni publicité. Comme tout site web, l'hébergeur peut enregistrer des données techniques de connexion (par exemple l'adresse IP) : voir sa politique de confidentialité. Le formulaire d'inscription Brevo et le lien Instagram mènent vers des services tiers soumis à leurs propres règles.</p>
+          <p>Ce site n'utilise ni cookies de suivi, ni outil de statistiques, ni publicité. Comme tout site web, l'hébergeur peut enregistrer des données techniques de connexion (par exemple l'adresse IP)&nbsp;: voir sa politique de confidentialité. Le formulaire d'inscription Brevo et le lien Instagram mènent vers des services tiers soumis à leurs propres règles.</p>
         </div>
       </section>
     </div>
