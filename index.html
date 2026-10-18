@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ariane White — La Saga Angélia : The Shield (Tome I)</title>
+    <meta name="description" content="The Shield, Tome I de la Saga Angélia : un roman fantasy sombre et céleste, entre guerre des anges et des démons, pouvoirs et romances. Wiki, nouvelles et newsletter." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="The Shield — La Saga Angélia" />
+    <meta property="og:description" content="Un roman fantasy sombre et céleste. Découvre l'univers d'Angélia, ses personnages et ses légendes." />
+    <meta name="theme-color" content="#0a120e" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M50 4 L92 20 C92 68, 74 102, 50 116 C26 102, 8 68, 8 20 Z' fill='%230a120e' stroke='%23d4b06a' stroke-width='6'/%3E%3Cpath d='M50 32 C43 44, 42 58, 47 72 L50 82 L53 72 C58 58, 57 44, 50 32 Z' fill='%23e8cf9a'/%3E%3C/svg%3E" />
     <style>
       :root {
         --nuit: #0a120e;          /* noir-vert nuit */
@@ -15,7 +21,7 @@
         --or-clair: #e8cf9a;
         --ivoire: #ece7db;         /* blanc cassé */
         --ivoire-2: #b9b4a8;       /* texte secondaire */
-        --sang: #a34a50;           /* accent discret */
+        --sang: #c4727a;           /* accent discret (plus lisible) */
       }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html { scroll-behavior: smooth; }
@@ -45,12 +51,11 @@
       }
       .sigle { font-size: 1.2rem; color: var(--or); font-variant: small-caps; letter-spacing: 0.12em; }
       nav ul { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
-      nav a, .tab-btn {
+      nav a {
         color: var(--ivoire-2); text-decoration: none; font-size: 0.92rem;
-        letter-spacing: 0.06em; background: none; border: none; cursor: pointer;
-        font-family: inherit; transition: color 0.2s;
+        letter-spacing: 0.06em; transition: color 0.2s;
       }
-      nav a:hover, .tab-btn:hover, .tab-btn.actif { color: var(--celadon); }
+      nav a:hover, nav a.actif { color: var(--celadon); }
       /* ===== PAGES ===== */
       .page { display: none; }
       .page.active { display: block; }
@@ -64,7 +69,7 @@
       h1 em { color: var(--or); font-style: normal; }
       .sous-titre { max-width: 620px; margin: 1.4rem auto 2.6rem; color: var(--ivoire-2); font-style: italic; font-size: 1.05rem; }
       .cta {
-        display: inline-block; padding: 0.85rem 2.2rem; margin: 0 0.5rem;
+        display: inline-block; padding: 0.85rem 2.2rem; margin: 0.3rem 0.5rem;
         border: 1px solid var(--or); color: var(--or-clair); background: none;
         text-decoration: none; letter-spacing: 0.16em; font-variant: small-caps;
         transition: all 0.25s; cursor: pointer; font-family: inherit; font-size: 1rem;
@@ -109,7 +114,7 @@
       .page-herbier {
         background: var(--nuit-2); border: 1px solid rgba(212, 176, 106, 0.5);
         outline: 1px solid rgba(212, 176, 106, 0.3); outline-offset: -6px;
-        padding: 2.6rem clamp(1.4rem, 5vw, 3rem); position: relative;
+        padding: 2.6rem clamp(1.4rem, 5vw, 3rem); position: relative; text-align: left;
       }
       .page-herbier::before {
         content: "— Extrait du Tome I —"; position: absolute; top: -0.8rem; left: 50%;
@@ -129,10 +134,11 @@
       .fiche-perso h3 { font-variant: small-caps; font-weight: normal; font-size: 1.35rem; color: var(--ivoire); letter-spacing: 0.06em; }
       .role { font-size: 0.78rem; color: var(--celadon); letter-spacing: 0.18em; text-transform: uppercase; margin: 0.2rem 0 1rem; }
       .citation { font-style: italic; color: var(--or-clair); font-size: 0.95rem; border-left: 2px solid var(--or); padding-left: 1rem; margin-bottom: 1rem; }
-      .trait { font-size: 0.95rem; color: var(--ivoire-2); margin-bottom: 1.3rem; }
+      .trait { font-size: 0.95rem; color: var(--ivoire-2); margin-bottom: 0.4rem; }
       .trait strong { color: var(--celadon); font-weight: normal; }
+      /* Secrets (spoilers) : à n'ajouter dans une fiche que lorsqu'il y en a un */
       .btn-secret {
-        width: 100%; padding: 0.6rem; background: none; cursor: pointer;
+        width: 100%; margin-top: 0.9rem; padding: 0.6rem; background: none; cursor: pointer;
         border: 1px dashed var(--sang); color: var(--sang);
         font-family: inherit; font-size: 0.82rem; font-variant: small-caps; letter-spacing: 0.12em;
         transition: all 0.2s;
@@ -160,13 +166,13 @@
       .liste-nouvelles p { font-size: 0.9rem; color: var(--ivoire-2); font-style: italic; }
       .bientot { color: var(--or); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
       /* ===== NEWSLETTER (Brevo) ===== */
-      #newsletter { text-align: center; }
+      #section-newsletter { text-align: center; }
       .boite-news { background: var(--nuit-2); border: 1px solid rgba(212, 176, 106, 0.4); padding: 3rem 1.6rem; max-width: 640px; margin: 0 auto; }
       .boite-news .accroche { color: var(--ivoire-2); font-style: italic; margin-bottom: 1.8rem; }
       .liste-points { list-style: none; margin: 0 auto 2rem; color: #d8d3c6; }
       .liste-points li { margin: 0.45rem 0; }
       .liste-points li::before { content: "✦ "; color: var(--or); }
-      form { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
+      #form-newsletter { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
       input[type="email"] {
         padding: 0.8rem 1.2rem; min-width: 260px; background: var(--nuit);
         border: 1px solid rgba(167, 196, 181, 0.4); color: var(--ivoire);
@@ -179,28 +185,53 @@
         letter-spacing: 0.15em; font-size: 1rem; transition: background 0.2s;
       }
       button.envoyer:hover { background: var(--or-clair); }
+      button.envoyer:disabled { opacity: 0.6; cursor: wait; }
       .message-merci { color: var(--celadon); font-style: italic; margin-top: 1.1rem; min-height: 1.5em; }
       .note-brevo { font-size: 0.8rem; color: var(--ivoire-2); font-style: italic; margin-top: 1.4rem; }
+      /* ===== CONTACT ===== */
+      .boite-contact { background: var(--nuit-2); border: 1px solid rgba(212, 176, 106, 0.4); padding: 2.6rem clamp(1.2rem, 4vw, 2.4rem); max-width: 640px; margin: 0 auto; }
+      .form-contact { display: flex; flex-direction: column; gap: 1.1rem; }
+      .form-contact label { display: block; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--celadon); margin-bottom: 0.35rem; }
+      .form-contact input[type="text"],
+      .form-contact input[type="email"],
+      .form-contact select,
+      .form-contact textarea {
+        width: 100%; min-width: 0; padding: 0.8rem 1rem; background: var(--nuit);
+        border: 1px solid rgba(167, 196, 181, 0.4); color: var(--ivoire);
+        font-family: inherit; font-size: 1rem; outline: none;
+      }
+      .form-contact textarea { min-height: 160px; resize: vertical; line-height: 1.6; }
+      .form-contact input:focus, .form-contact select:focus, .form-contact textarea:focus { border-color: var(--celadon); }
+      .form-contact .consentement { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.85rem; color: var(--ivoire-2); }
+      .form-contact .consentement input { margin-top: 0.35rem; accent-color: var(--or); }
+      .form-contact .consentement label { text-transform: none; letter-spacing: 0; font-size: 0.85rem; color: var(--ivoire-2); margin: 0; }
+      .piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+      .boite-contact button.envoyer { align-self: center; }
+      .charte { max-width: 640px; margin: 2.2rem auto 0; padding: 1.4rem 1.5rem; border-left: 3px solid var(--or); background: var(--nuit-3); font-size: 0.92rem; color: var(--ivoire-2); }
+      .charte h3 { font-weight: normal; font-variant: small-caps; letter-spacing: 0.08em; color: var(--celadon); font-size: 1.1rem; margin-bottom: 0.4rem; }
+      /* ===== MENTIONS LÉGALES ===== */
+      .legal { max-width: 720px; margin: 0 auto; text-align: left; }
+      .legal h3 { font-weight: normal; font-variant: small-caps; letter-spacing: 0.08em; color: var(--celadon); font-size: 1.2rem; margin: 2rem 0 0.5rem; }
+      .legal p, .legal li { font-size: 0.95rem; color: var(--ivoire-2); margin-bottom: 0.6rem; }
+      .legal ul { padding-left: 1.3rem; }
+      .legal a, .consentement a { color: var(--celadon); }
       /* ===== FOOTER ===== */
       footer.ciel { border-top: 1px solid rgba(212, 176, 106, 0.3); text-align: center; padding: 2.5rem 1rem; color: var(--ivoire-2); font-size: 0.85rem; }
       footer a { color: var(--celadon); text-decoration: none; }
       footer a:hover { color: var(--or-clair); }
-      .note-demo { background: var(--nuit-2); border-bottom: 1px solid rgba(212,176,106,0.3); padding: 0.7rem 1.2rem; font-size: 0.82rem; text-align: center; color: var(--or); }
     </style>
   </head>
   <body>
-    <div class="note-demo">
-      ⚠️ Maquette — tout ce qui est entre [crochets] est à remplacer par tes textes. Les « secrets » des fiches sont des placeholders, pas ton vrai lore.
-    </div>
 
     <nav>
       <span class="sigle">Ariane White · Angélia</span>
       <ul>
-        <li><button class="tab-btn actif" data-page="accueil">Accueil</button></li>
-        <li><button class="tab-btn" data-page="personnages">Wiki</button></li>
-        <li><button class="tab-btn" data-page="univers">L'univers d'Angélia</button></li>
-        <li><button class="tab-btn" data-page="nouvelles">Nouvelles</button></li>
-        <li><button class="tab-btn" data-page="newsletter">Newsletter</button></li>
+        <li><a href="#accueil" class="actif" data-page="accueil">Accueil</a></li>
+        <li><a href="#personnages" data-page="personnages">Wiki</a></li>
+        <li><a href="#univers" data-page="univers">L'univers d'Angélia</a></li>
+        <li><a href="#nouvelles" data-page="nouvelles">Nouvelles</a></li>
+        <li><a href="#newsletter" data-page="newsletter">Newsletter</a></li>
+        <li><a href="#contact" data-page="contact">Contact</a></li>
       </ul>
     </nav>
 
@@ -234,8 +265,8 @@
           essaye de tout changer. Avec, à la clé, un plan audacieux :
           réussir là où même les dieux ont échoué. Sans aucune pression !
         </p>
-        <button class="cta" data-goto="newsletter">Rejoindre les premiers lecteurs</button>
-        <button class="cta vert" id="btn-prologue">Lire un extrait</button>
+        <a class="cta" href="#newsletter">Rejoindre les premiers lecteurs</a>
+        <button class="cta vert" id="btn-prologue" type="button">Lire un extrait</button>
 
         <div id="bloc-prologue" style="display:none; max-width:720px; margin:3rem auto 0;">
           <div class="page-herbier">
@@ -279,23 +310,20 @@
           <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
         </svg>
         <div class="barre-wiki">
-          <input type="text" id="recherche-wiki" placeholder="Rechercher un personnage…" />
+          <input type="text" id="recherche-wiki" placeholder="Rechercher un personnage…" aria-label="Rechercher un personnage" />
         </div>
         <div class="filtres">
-          <button class="filtre actif" data-cat="tous">Tous</button>
-          <button class="filtre" data-cat="anges">Anges</button>
-          <button class="filtre" data-cat="cerfs-volants">Cerfs-Volants</button>
-          <button class="filtre" data-cat="nouvelles">Nouvelles</button>
+          <button class="filtre actif" data-cat="tous" type="button">Tous</button>
+          <button class="filtre" data-cat="anges" type="button">Anges</button>
+          <button class="filtre" data-cat="cerfs-volants" type="button">Cerfs-Volants</button>
+          <button class="filtre" data-cat="nouvelles" type="button">Nouvelles</button>
         </div>
         <div class="persos">
 
           <div class="fiche-perso" data-cat="anges" data-nom="Mihr">
             <h3>Mihr</h3>
             <p class="role">Ange gardien</p>
-            <p class="citation">« [Sa meilleure réplique du livre — à choisir dans le manuscrit.] »</p>
             <p class="trait"><strong>Portrait.</strong> Plutôt grand, la peau blanche, des cheveux roux courts et bouclés, des yeux verts. Légèreté et humanité à l'état pur.</p>
-            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
-            <div class="secret"></div>
           </div>
 
           <div class="fiche-perso" data-cat="anges" data-nom="Khamael">
@@ -303,8 +331,6 @@
             <p class="role">Ange puissant — professeur à l'Académie de l'Horizon</p>
             <p class="citation">« Alors, qui veut essayer de perdre un doigt aujourd'hui ? »</p>
             <p class="trait"><strong>Portrait.</strong> Voûté, un œil caché sous un bandeau de cuir, les mains couvertes de cicatrices fines comme des dizaines de petites brûlures anciennes.</p>
-            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
-            <div class="secret"></div>
           </div>
 
           <div class="fiche-perso" data-cat="anges" data-nom="Dahlia">
@@ -312,29 +338,29 @@
             <p class="role">Ange gardien</p>
             <p class="citation">« J'ai grandi avec les Cerfs-Volants, et on me racontait, petite, une légende de leur peuple. »</p>
             <p class="trait"><strong>Portrait.</strong> Une femme de plutôt petite taille, la peau noire, les yeux et les cheveux bruns — des cheveux tressés, longs. Douce et timide, mais de celles qui ne reculent jamais quand il le faut.</p>
-            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
-            <div class="secret"></div>
           </div>
 
           <div class="fiche-perso" data-cat="cerfs-volants" data-nom="Linus">
             <h3>Linus</h3>
             <p class="role">Cerf-Volant</p>
-            <p class="citation">« [Une phrase viendra — les Cerfs-Volants préfèrent parler par leurs légendes.] »</p>
             <p class="trait"><strong>Portrait.</strong> Un grand cerf blanc aux longues cornes. Son peuple garde de nombreuses légendes.</p>
-            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
-            <div class="secret"></div>
           </div>
 
           <div class="fiche-perso" data-cat="anges" data-nom="Ava">
             <h3>Ava</h3>
             <p class="role">Ange clairvoyant — Pilier du Sommet</p>
-            <p class="citation">« [Sa citation viendra, quand elle voudra bien la laisser voir.] »</p>
             <p class="trait"><strong>Portrait.</strong> Taille moyenne, cheveux bruns, bouclés, courts. Elle travaille au Pilier du Sommet, où elle veille sur des connaissances que bien peu peuvent approcher.</p>
-            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
-            <div class="secret"></div>
           </div>
 
+          <!--
+            MODÈLE POUR AJOUTER UN SECRET (spoiler) À UNE FICHE :
+            colle ces deux lignes à la fin de la fiche, juste avant son </div> :
+              <button class="btn-secret" type="button">Révéler un secret (spoiler)</button>
+              <div class="secret">Ton texte secret ici.</div>
+          -->
+
         </div>
+        <p class="mention" id="wiki-vide" hidden style="margin-top:2rem;">Aucune fiche pour le moment dans cette catégorie — elles arrivent avec les nouvelles. 🕯️</p>
         <p class="mention" style="margin-top:2.5rem;">
           Ce wiki s'enrichira au fil des nouvelles : les personnages des histoires
           parallèles y auront leur fiche, eux aussi. 🕯️
@@ -382,11 +408,7 @@
         </svg>
         <ul class="liste-nouvelles">
           <li>
-            <div><h3>Frida</h3><p>[Une ligne d'accroche — le texte arrivera quand il sera prêt.]</p></div>
-            <span class="bientot">À paraître</span>
-          </li>
-          <li>
-            <div><h3>[Titre de la deuxième nouvelle]</h3><p>[Une ligne d'accroche.]</p></div>
+            <div><h3>Frida</h3><p>Frida, artisane ébéniste, reçoit d'un Clairvoyant une commande singulière : une amulette.</p></div>
             <span class="bientot">À paraître</span>
           </li>
         </ul>
@@ -396,7 +418,7 @@
 
     <!-- ================= PAGE NEWSLETTER ================= -->
     <div class="page" id="page-newsletter">
-      <section id="newsletter">
+      <section id="section-newsletter">
         <h2>Les premiers lecteurs</h2>
         <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
           <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
@@ -417,57 +439,189 @@
           <!--
             ⬇⬇⬇ À REMPLACER PAR LE FORMULAIRE BREVO ⬇⬇⬇
             Une fois ton compte Brevo créé, remplace tout le bloc <form>…</form>
-            par le code d'intégration que Brevo te fournit.
+            (et la ligne « note-brevo » ci-dessous) par le code d'intégration que Brevo te fournit.
           -->
           <form id="form-newsletter">
-            <input type="email" id="email" placeholder="ton.adresse@exemple.com" required />
+            <input type="email" id="email" placeholder="ton.adresse@exemple.com" aria-label="Ton adresse e-mail" required />
             <button type="submit" class="envoyer">S'abonner</button>
           </form>
-          <p class="message-merci" id="merci"></p>
+          <p class="message-merci" id="merci" role="status"></p>
           <p class="note-brevo">Démo : ce formulaire ne collecte rien. Il sera branché sur ta liste Brevo.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= PAGE CONTACT ================= -->
+    <div class="page" id="page-contact">
+      <section>
+        <h2>Contact</h2>
+        <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
+          <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
+          <line x1="228" y1="8" x2="400" y2="8" stroke="currentColor"/>
+          <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
+        </svg>
+        <div class="boite-contact">
+          <form id="form-contact" class="form-contact" method="POST" novalidate>
+            <div>
+              <label for="c-nom">Ton nom ou pseudo</label>
+              <input type="text" id="c-nom" name="nom" autocomplete="name" required />
+            </div>
+            <div>
+              <label for="c-email">Ton adresse e-mail</label>
+              <input type="email" id="c-email" name="email" autocomplete="email" required />
+            </div>
+            <div>
+              <label for="c-sujet">Sujet</label>
+              <select id="c-sujet" name="sujet">
+                <option>Une question sur le livre</option>
+                <option>Proposer un fanart</option>
+                <option>Une remarque ou un message</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div>
+              <label for="c-message">Ton message</label>
+              <textarea id="c-message" name="message" required></textarea>
+            </div>
+            <!-- piège anti-spam : les vrais visiteurs ne le voient pas -->
+            <div class="piege" aria-hidden="true">
+              <label for="c-gotcha">Ne pas remplir</label>
+              <input type="text" id="c-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="consentement">
+              <input type="checkbox" id="c-consent" name="consentement" required />
+              <label for="c-consent">J'accepte que mon nom et mon adresse e-mail soient utilisés uniquement pour me répondre (<a href="#mentions">voir la politique de confidentialité</a>).</label>
+            </div>
+            <button type="submit" class="envoyer" id="c-envoyer">Envoyer</button>
+            <p class="message-merci" id="c-statut" role="status" style="text-align:center;"></p>
+          </form>
+        </div>
+
+        <div class="charte">
+          <h3>Fanarts &amp; charte des fans</h3>
+          <p>
+            Les fanarts sont les bienvenus. Merci de les garder non commerciaux, de ne pas modifier les textes de l'autrice
+            et de toujours créditer l'artiste. Propose le tien via le formulaire ci-dessus (sujet « Proposer un fanart ») :
+            la galerie ouvrira à la sortie du livre.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= PAGE MENTIONS LÉGALES & CONFIDENTIALITÉ ================= -->
+    <div class="page" id="page-mentions">
+      <section>
+        <h2>Mentions légales &amp; confidentialité</h2>
+        <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
+          <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
+          <line x1="228" y1="8" x2="400" y2="8" stroke="currentColor"/>
+          <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
+        </svg>
+        <div class="legal">
+          <p><em>Dernière mise à jour : 18 octobre 2026.</em></p>
+
+          <h3>Éditrice du site</h3>
+          <p>Ce site est un site personnel, non commercial, édité par Ariane White (pseudonyme de l'autrice), qui en est aussi la directrice de la publication. Conformément à la loi, son identité complète est communiquée à l'hébergeur. Pour la contacter : <a href="#contact">formulaire de contact</a>.</p>
+
+          <h3>Hébergement</h3>
+          <p>Le site est hébergé par GitHub, Inc. (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+
+          <h3>Propriété intellectuelle</h3>
+          <p>Les textes, l'univers d'Angélia, les personnages, les noms, les extraits et les visuels du site sont protégés par le droit d'auteur. © Ariane White — tous droits réservés. Toute reproduction ou adaptation sans autorisation écrite est interdite. Les fanarts non commerciaux sont toutefois les bienvenus, dans le respect de la charte des fans (page Contact).</p>
+
+          <h3>Données personnelles : ce que je collecte</h3>
+          <ul>
+            <li><strong>Formulaire de contact</strong> : ton nom ou pseudo, ton adresse e-mail et ton message, uniquement pour te répondre. Base légale : ton consentement. Les messages sont transmis par le service Formspree (États-Unis) et conservés au plus 12 mois après le dernier échange.</li>
+            <li><strong>Newsletter</strong> : ton adresse e-mail, pour t'envoyer des nouvelles de la Saga Angélia (sortie du livre, nouvelles, coulisses). Base légale : ton consentement. Les adresses sont gérées par Brevo (société française) et conservées jusqu'à ta désinscription.</li>
+          </ul>
+          <p>Aucune donnée n'est vendue, ni cédée à des fins publicitaires.</p>
+
+          <h3>Tes droits</h3>
+          <p>Tu peux à tout moment demander l'accès à tes données, leur correction ou leur suppression, retirer ton consentement ou t'opposer à leur usage. Pour la newsletter, chaque e-mail contient un lien de désinscription. Pour toute autre demande, écris-moi via le <a href="#contact">formulaire de contact</a>. Si tu estimes que tes droits ne sont pas respectés, tu peux saisir la CNIL (cnil.fr).</p>
+
+          <h3>Cookies et suivi</h3>
+          <p>Ce site n'utilise ni cookies de suivi, ni outil de statistiques, ni publicité. Comme tout site web, l'hébergeur peut enregistrer des données techniques de connexion (par exemple l'adresse IP) : voir sa politique de confidentialité. Le formulaire d'inscription Brevo et le lien Instagram mènent vers des services tiers soumis à leurs propres règles.</p>
         </div>
       </section>
     </div>
 
     <footer class="ciel">
       © <span id="annee"></span> Ariane White — La Saga Angélia. Tous droits réservés.<br />
-      Textes et univers sous licence <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a> — crédit obligatoire, pas de modification, aucune utilisation commerciale.<br />
-      Contact : <a href="mailto:arinewh.te@gmail.com">arinewh.te@gmail.com</a> ·
-      <a href="#" onclick="allerPage('newsletter'); return false;">Newsletter</a> ·
-      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      Les fanarts non commerciaux sont les bienvenus — voir la <a href="#contact">charte des fans</a>.<br />
+      <a href="#contact">Contact</a> ·
+      <a href="#newsletter">Newsletter</a> ·
+      <a href="https://www.instagram.com/ariane_white_/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="#mentions">Mentions légales &amp; confidentialité</a>
     </footer>
 
     <script>
-      // ===== Navigation par onglets =====
-      function allerPage(id) {
-        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      // ===== Navigation par onglets (avec adresse par page : #personnages, #contact, etc.) =====
+      var PAGES = {
+        accueil: "Ariane White — La Saga Angélia : The Shield (Tome I)",
+        personnages: "Wiki — Personnages d'Angélia",
+        univers: "L'univers d'Angélia",
+        nouvelles: "Nouvelles — Saga Angélia",
+        newsletter: "Newsletter — Saga Angélia",
+        contact: "Contact — Saga Angélia",
+        mentions: "Mentions légales & confidentialité — Saga Angélia"
+      };
+      // Affiche une page (fonctionne partout, même dans un aperçu)
+      function afficherPage(id) {
+        if (!PAGES[id]) id = "accueil";
+        document.querySelectorAll(".page").forEach(function (p) { p.classList.remove("active"); });
         document.getElementById("page-" + id).classList.add("active");
-        document.querySelectorAll(".tab-btn").forEach(b =>
-          b.classList.toggle("actif", b.dataset.page === id));
+        document.querySelectorAll("nav a").forEach(function (a) {
+          var actif = a.dataset.page === id;
+          a.classList.toggle("actif", actif);
+          if (actif) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+        });
+        document.title = PAGES[id];
         window.scrollTo({ top: 0 });
       }
-      document.querySelectorAll(".tab-btn").forEach(btn =>
-        btn.addEventListener("click", () => allerPage(btn.dataset.page)));
-      document.querySelectorAll("[data-goto]").forEach(btn =>
-        btn.addEventListener("click", () => allerPage(btn.dataset.goto)));
-      // ===== Prologue dépliable =====
+      // Change de page + met à jour l'adresse (#personnages…) quand le navigateur le permet
+      function allerPage(id) {
+        afficherPage(id);
+        try {
+          if (location.hash !== "#" + id) history.pushState(null, "", "#" + id);
+        } catch (e) { /* aperçu limité : la page change quand même */ }
+      }
+      // Tous les liens internes (menu, boutons, pied de page)
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest ? e.target.closest("a[href^='#']") : null;
+        if (!a) return;
+        var id = a.getAttribute("href").slice(1);
+        if (PAGES[id]) { e.preventDefault(); allerPage(id); }
+      });
+      // Boutons « précédent / suivant » du navigateur et lien direct
+      window.addEventListener("popstate", function () { afficherPage(location.hash.replace("#", "")); });
+      window.addEventListener("hashchange", function () { afficherPage(location.hash.replace("#", "")); });
+      afficherPage(location.hash.replace("#", ""));
+
+      // ===== Extrait dépliable =====
       document.getElementById("btn-prologue").addEventListener("click", function () {
         var b = document.getElementById("bloc-prologue");
         b.style.display = (b.style.display === "none") ? "block" : "none";
         this.textContent = (b.style.display === "block") ? "Refermer l'extrait" : "Lire un extrait";
       });
-      // ===== Secrets (spoilers) =====
-      document.querySelectorAll(".btn-secret").forEach(btn =>
-        btn.addEventListener("click", () => btn.nextElementSibling.classList.toggle("ouvert")));
-      // ===== Wiki : recherche + filtres =====
+
+      // ===== Secrets (spoilers) : fonctionne dès qu'une fiche contient un bouton .btn-secret =====
+      document.querySelectorAll(".btn-secret").forEach(function (btn) {
+        btn.addEventListener("click", function () { btn.nextElementSibling.classList.toggle("ouvert"); });
+      });
+
+      // ===== Wiki : recherche (sans tenir compte des accents) + filtres =====
+      function sansAccents(s) { return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
       var filtreActif = "tous";
       function filtrerWiki() {
-        var q = document.getElementById("recherche-wiki").value.toLowerCase();
+        var q = sansAccents(document.getElementById("recherche-wiki").value);
+        var visibles = 0;
         document.querySelectorAll(".fiche-perso").forEach(function (f) {
-          var okCat = filtreActif === "tous" || f.dataset.cat === filtreActif;
-          var okNom = f.dataset.nom.toLowerCase().indexOf(q) !== -1;
-          f.style.display = (okCat && okNom) ? "" : "none";
+          var ok = (filtreActif === "tous" || f.dataset.cat === filtreActif) &&
+                   sansAccents(f.dataset.nom).indexOf(q) !== -1;
+          f.style.display = ok ? "" : "none";
+          if (ok) visibles++;
         });
+        document.getElementById("wiki-vide").hidden = visibles !== 0;
       }
       document.getElementById("recherche-wiki").addEventListener("input", filtrerWiki);
       document.querySelectorAll(".filtre").forEach(function (b) {
@@ -477,13 +631,48 @@
           filtrerWiki();
         });
       });
-      // ===== Année + formulaire démo =====
+
+      // ===== Année + formulaire newsletter (démo, à remplacer par Brevo) =====
       document.getElementById("annee").textContent = new Date().getFullYear();
       document.getElementById("form-newsletter").addEventListener("submit", function (e) {
         e.preventDefault();
         document.getElementById("merci").textContent =
           "Merci ! (Formulaire Brevo à brancher — rien n'est collecté ici.)";
         this.reset();
+      });
+
+      // ===== Formulaire de contact (via Formspree) =====
+      // 1) Crée un compte gratuit sur formspree.io, puis un nouveau formulaire.
+      // 2) Remplace VOTRE_ID ci-dessous par l'identifiant fourni (ex. https://formspree.io/f/abcdwxyz).
+      var URL_CONTACT = "https://formspree.io/f/VOTRE_ID";
+      document.getElementById("form-contact").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var form = this, statut = document.getElementById("c-statut"), bouton = document.getElementById("c-envoyer");
+        if (!form.checkValidity()) {
+          statut.textContent = "Merci de remplir tous les champs et de cocher la case de consentement.";
+          form.reportValidity();
+          return;
+        }
+        if (URL_CONTACT.indexOf("VOTRE_ID") !== -1) {
+          statut.textContent = "Le formulaire n'est pas encore activé. Reviens très bientôt !";
+          return;
+        }
+        bouton.disabled = true;
+        statut.textContent = "Envoi en cours…";
+        fetch(URL_CONTACT, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        }).then(function (r) {
+          if (r.ok) {
+            statut.textContent = "Merci ! Ton message est bien parti, je te réponds dès que possible.";
+            form.reset();
+          } else {
+            statut.textContent = "Oups, l'envoi a échoué. Réessaie dans un instant.";
+          }
+        }).catch(function () {
+          statut.textContent = "Oups, l'envoi a échoué. Vérifie ta connexion et réessaie.";
+        }).then(function () { bouton.disabled = false; });
       });
     </script>
   </body>
