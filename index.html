@@ -181,7 +181,6 @@
       .liste-points { list-style: none; margin: 0 auto 2rem; color: #d8d3c6; }
       .liste-points li { margin: 0.45rem 0; }
       .liste-points li::before { content: "✦ "; color: var(--or); }
-      #form-newsletter { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
       input[type="email"] {
         padding: 0.8rem 1.2rem; min-width: 260px; background: var(--nuit);
         border: 1px solid rgba(167, 196, 181, 0.4); color: var(--ivoire);
@@ -195,8 +194,10 @@
       }
       button.envoyer:hover { background: var(--or-clair); }
       button.envoyer:disabled { opacity: 0.6; cursor: wait; }
+      .bientot-news { font-family: var(--titre); color: var(--or); letter-spacing: 0.14em; font-size: 1.05rem; margin-bottom: 1rem; }
+      .note-news { font-size: 0.92rem; color: var(--ivoire-2); }
+      .note-news a { color: var(--celadon); }
       .message-merci { color: var(--celadon); font-style: italic; margin-top: 1.1rem; min-height: 1.5em; }
-      .note-brevo { font-size: 0.8rem; color: var(--ivoire-2); font-style: italic; margin-top: 1.4rem; }
       /* ===== CONTACT ===== */
       .boite-contact { background: var(--nuit-2); border: 1px solid rgba(212, 176, 106, 0.4); padding: 2.6rem clamp(1.2rem, 4vw, 2.4rem); max-width: 640px; margin: 0 auto; }
       .form-contact { display: flex; flex-direction: column; gap: 1.1rem; }
@@ -443,7 +444,7 @@
         </svg>
         <div class="boite-news">
           <p class="accroche">
-            Angélia n'est pas encore ouverte à tous. Rejoins les premiers lecteurs&nbsp;:
+            Angélia n'est pas encore ouverte à tous. Bientôt, tu pourras rejoindre les premiers lecteurs&nbsp;:
             tu seras averti avant tout le monde — sans spam, promis.
           </p>
           <ul class="liste-points">
@@ -452,17 +453,14 @@
             <li>Les coulisses de l'écriture, de temps en temps</li>
             <li>Rien d'autre — que du Angélia</li>
           </ul>
+          <p class="bientot-news">Les inscriptions ouvrent bientôt.</p>
+          <p class="note-news">En attendant, tu peux me retrouver sur
+            <a href="https://www.instagram.com/ariane_white_/" target="_blank" rel="noopener">Instagram</a>
+            ou m'écrire via le <a href="#contact">formulaire de contact</a>.</p>
           <!--
-            ⬇⬇⬇ À REMPLACER PAR LE FORMULAIRE BREVO ⬇⬇⬇
-            Une fois ton compte Brevo créé, remplace tout le bloc <form>…</form>
-            (et la ligne «&nbsp;note-brevo&nbsp;» ci-dessous) par le code d'intégration que Brevo te fournit.
+            QUAND TON COMPTE BREVO SERA PRÊT : remplace les deux paragraphes « bientot-news » et « note-news »
+            ci-dessus par le code d'intégration du formulaire fourni par Brevo.
           -->
-          <form id="form-newsletter">
-            <input type="email" id="email" placeholder="ton.adresse@exemple.com" aria-label="Ton adresse e-mail" required />
-            <button type="submit" class="envoyer">S'abonner</button>
-          </form>
-          <p class="message-merci" id="merci" role="status"></p>
-          <p class="note-brevo">Démo&nbsp;: ce formulaire ne collecte rien. Il sera branché sur ta liste Brevo.</p>
         </div>
       </section>
     </div>
@@ -648,14 +646,8 @@
         });
       });
 
-      // ===== Année + formulaire newsletter (démo, à remplacer par Brevo) =====
+      // ===== Année =====
       document.getElementById("annee").textContent = new Date().getFullYear();
-      document.getElementById("form-newsletter").addEventListener("submit", function (e) {
-        e.preventDefault();
-        document.getElementById("merci").textContent =
-          "Merci ! (Formulaire Brevo à brancher — rien n'est collecté ici.)";
-        this.reset();
-      });
 
       // ===== Formulaire de contact (via Formspree) =====
       // 1) Crée un compte gratuit sur formspree.io, puis un nouveau formulaire.
