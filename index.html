@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ariane White — La Saga Angélia : The Shield (Tome I)</title>
+    <style>
+      :root {
+        --nuit: #0a120e;          /* noir-vert nuit */
+        --nuit-2: #0f1a14;        /* panneau */
+        --nuit-3: #16241c;        /* carte */
+        --celadon: #a7c4b5;        /* vert céladon */
+        --celadon-2: #7fae98;     /* céladon plus soutenu */
+        --or: #d4b06a;             /* doré ornements */
+        --or-clair: #e8cf9a;
+        --ivoire: #ece7db;         /* blanc cassé */
+        --ivoire-2: #b9b4a8;       /* texte secondaire */
+        --sang: #a34a50;           /* accent discret */
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: Georgia, 'Times New Roman', serif;
+        background: var(--nuit);
+        color: var(--ivoire);
+        line-height: 1.75;
+      }
+      /* ===== CIEL ÉTOILÉ (hero + footer) ===== */
+      .ciel {
+        position: relative; overflow: hidden;
+        background:
+          radial-gradient(ellipse at 80% 10%, rgba(212, 176, 106, 0.08), transparent 50%),
+          radial-gradient(ellipse at 15% 85%, rgba(167, 196, 181, 0.07), transparent 55%),
+          var(--nuit);
+      }
+      .etoile { position: absolute; border-radius: 50%; background: var(--or-clair); opacity: 0.7; }
+      /* ===== NAV ===== */
+      nav {
+        position: sticky; top: 0; z-index: 20;
+        display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+        padding: 0.9rem 1.6rem;
+        background: rgba(10, 18, 14, 0.94);
+        border-bottom: 1px solid rgba(212, 176, 106, 0.35);
+        backdrop-filter: blur(6px);
+      }
+      .sigle { font-size: 1.2rem; color: var(--or); font-variant: small-caps; letter-spacing: 0.12em; }
+      nav ul { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
+      nav a, .tab-btn {
+        color: var(--ivoire-2); text-decoration: none; font-size: 0.92rem;
+        letter-spacing: 0.06em; background: none; border: none; cursor: pointer;
+        font-family: inherit; transition: color 0.2s;
+      }
+      nav a:hover, .tab-btn:hover, .tab-btn.actif { color: var(--celadon); }
+      /* ===== PAGES ===== */
+      .page { display: none; }
+      .page.active { display: block; }
+      /* ===== HERO ===== */
+      header { text-align: center; padding: 5.5rem 1.5rem 4.5rem; border-bottom: 1px solid rgba(212, 176, 106, 0.25); }
+      .sur-titre { font-variant: small-caps; letter-spacing: 0.42em; color: var(--celadon); font-size: 0.9rem; }
+      h1 {
+        font-weight: normal; font-size: clamp(2.4rem, 7vw, 4rem);
+        letter-spacing: 0.04em; line-height: 1.2; color: var(--ivoire); margin: 0.8rem 0 0.4rem;
+      }
+      h1 em { color: var(--or); font-style: normal; }
+      .sous-titre { max-width: 620px; margin: 1.4rem auto 2.6rem; color: var(--ivoire-2); font-style: italic; font-size: 1.05rem; }
+      .cta {
+        display: inline-block; padding: 0.85rem 2.2rem; margin: 0 0.5rem;
+        border: 1px solid var(--or); color: var(--or-clair); background: none;
+        text-decoration: none; letter-spacing: 0.16em; font-variant: small-caps;
+        transition: all 0.25s; cursor: pointer; font-family: inherit; font-size: 1rem;
+      }
+      .cta:hover { background: var(--or); color: var(--nuit); }
+      .cta.vert { border-color: var(--celadon-2); color: var(--celadon); }
+      .cta.vert:hover { background: var(--celadon-2); color: var(--nuit); }
+      /* bouclier doré */
+      .bouclier { width: 120px; height: auto; margin: 0 auto 1.4rem; display: block; filter: drop-shadow(0 4px 10px rgba(212,176,106,0.25)); }
+      /* ===== SECTIONS COMMUNES ===== */
+      section { max-width: 880px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+      h2 {
+        font-weight: normal; font-size: 1.8rem; font-variant: small-caps;
+        letter-spacing: 0.14em; color: var(--celadon); text-align: center; margin-bottom: 0.4rem;
+      }
+      .filet { width: 100%; margin: 0.8rem auto 2.4rem; color: var(--or); display: block; height: 16px; }
+      .mention { text-align: center; color: var(--ivoire-2); font-size: 0.88rem; font-style: italic; }
+      /* ===== PROLOGUE ===== */
+      .page-herbier {
+        background: var(--nuit-2); border: 1px solid rgba(212, 176, 106, 0.5);
+        outline: 1px solid rgba(212, 176, 106, 0.3); outline-offset: -6px;
+        padding: 2.6rem clamp(1.4rem, 5vw, 3rem); position: relative;
+      }
+      .page-herbier::before {
+        content: "— Extrait du Tome I —"; position: absolute; top: -0.8rem; left: 50%;
+        transform: translateX(-50%); background: var(--nuit); padding: 0 1rem;
+        color: var(--or); font-variant: small-caps; letter-spacing: 0.22em; font-size: 0.82rem;
+      }
+      .page-herbier p { font-size: 1.06rem; color: #d8d3c6; margin-bottom: 1rem; font-style: italic; }
+      .page-herbier p::first-letter { color: var(--or); font-size: 1.6em; }
+      /* ===== PERSONNAGES ===== */
+      .persos { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.6rem; }
+      .fiche-perso {
+        background: var(--nuit-3); border: 1px solid rgba(167, 196, 181, 0.18);
+        border-top: 3px solid var(--celadon-2); padding: 1.7rem 1.6rem;
+        transition: transform 0.2s, border-color 0.2s;
+      }
+      .fiche-perso:hover { transform: translateY(-4px); border-top-color: var(--or); }
+      .fiche-perso h3 { font-variant: small-caps; font-weight: normal; font-size: 1.35rem; color: var(--ivoire); letter-spacing: 0.06em; }
+      .role { font-size: 0.78rem; color: var(--celadon); letter-spacing: 0.18em; text-transform: uppercase; margin: 0.2rem 0 1rem; }
+      .citation { font-style: italic; color: var(--or-clair); font-size: 0.95rem; border-left: 2px solid var(--or); padding-left: 1rem; margin-bottom: 1rem; }
+      .trait { font-size: 0.95rem; color: var(--ivoire-2); margin-bottom: 1.3rem; }
+      .trait strong { color: var(--celadon); font-weight: normal; }
+      .btn-secret {
+        width: 100%; padding: 0.6rem; background: none; cursor: pointer;
+        border: 1px dashed var(--sang); color: var(--sang);
+        font-family: inherit; font-size: 0.82rem; font-variant: small-caps; letter-spacing: 0.12em;
+        transition: all 0.2s;
+      }
+      .btn-secret:hover { background: rgba(163, 74, 80, 0.12); }
+      .secret { display: none; margin-top: 1rem; padding: 0.9rem 1rem; background: rgba(163, 74, 80, 0.10); border-left: 2px solid var(--sang); font-size: 0.9rem; color: #d3b8ba; font-style: italic; }
+      .secret.ouvert { display: block; }
+      /* ===== UNIVERS ===== */
+      .archives { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+      .fiche {
+        background: var(--nuit-3); border: 1px solid rgba(212, 176, 106, 0.22);
+        border-left: 3px solid var(--or); padding: 1.6rem 1.5rem;
+      }
+      .fiche .ref { font-size: 0.7rem; letter-spacing: 0.25em; color: var(--celadon); text-transform: uppercase; margin-bottom: 0.6rem; }
+      .fiche h3 { font-variant: small-caps; font-weight: normal; font-size: 1.18rem; color: var(--ivoire); margin-bottom: 0.6rem; }
+      .fiche p { font-size: 0.94rem; color: var(--ivoire-2); }
+      /* ===== NOUVELLES ===== */
+      .liste-nouvelles { list-style: none; max-width: 640px; margin: 0 auto; }
+      .liste-nouvelles li {
+        padding: 1.4rem 1.5rem; margin-bottom: 1.2rem;
+        background: var(--nuit-3); border: 1px solid rgba(167, 196, 181, 0.15);
+        display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+      }
+      .liste-nouvelles h3 { font-weight: normal; font-variant: small-caps; font-size: 1.1rem; color: var(--celadon); letter-spacing: 0.05em; }
+      .liste-nouvelles p { font-size: 0.9rem; color: var(--ivoire-2); font-style: italic; }
+      .bientot { color: var(--or); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; }
+      /* ===== NEWSLETTER (Brevo) ===== */
+      #newsletter { text-align: center; }
+      .boite-news { background: var(--nuit-2); border: 1px solid rgba(212, 176, 106, 0.4); padding: 3rem 1.6rem; max-width: 640px; margin: 0 auto; }
+      .boite-news .accroche { color: var(--ivoire-2); font-style: italic; margin-bottom: 1.8rem; }
+      .liste-points { list-style: none; margin: 0 auto 2rem; color: #d8d3c6; }
+      .liste-points li { margin: 0.45rem 0; }
+      .liste-points li::before { content: "✦ "; color: var(--or); }
+      form { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
+      input[type="email"] {
+        padding: 0.8rem 1.2rem; min-width: 260px; background: var(--nuit);
+        border: 1px solid rgba(167, 196, 181, 0.4); color: var(--ivoire);
+        font-family: inherit; font-size: 1rem; outline: none;
+      }
+      input[type="email"]:focus { border-color: var(--celadon); }
+      button.envoyer {
+        padding: 0.8rem 2rem; background: var(--or); border: none; cursor: pointer;
+        color: var(--nuit); font-family: inherit; font-variant: small-caps;
+        letter-spacing: 0.15em; font-size: 1rem; transition: background 0.2s;
+      }
+      button.envoyer:hover { background: var(--or-clair); }
+      .message-merci { color: var(--celadon); font-style: italic; margin-top: 1.1rem; min-height: 1.5em; }
+      .note-brevo { font-size: 0.8rem; color: var(--ivoire-2); font-style: italic; margin-top: 1.4rem; }
+      /* ===== FOOTER ===== */
+      footer.ciel { border-top: 1px solid rgba(212, 176, 106, 0.3); text-align: center; padding: 2.5rem 1rem; color: var(--ivoire-2); font-size: 0.85rem; }
+      footer a { color: var(--celadon); text-decoration: none; }
+      footer a:hover { color: var(--or-clair); }
+      .note-demo { background: var(--nuit-2); border-bottom: 1px solid rgba(212,176,106,0.3); padding: 0.7rem 1.2rem; font-size: 0.82rem; text-align: center; color: var(--or); }
+    </style>
+  </head>
+  <body>
+    <div class="note-demo">
+      ⚠️ Maquette — tout ce qui est entre [crochets] est à remplacer par tes textes. Les « secrets » des fiches sont des placeholders, pas ton vrai lore.
+    </div>
+
+    <nav>
+      <span class="sigle">Ariane White · Angélia</span>
+      <ul>
+        <li><button class="tab-btn actif" data-page="accueil">Accueil</button></li>
+        <li><button class="tab-btn" data-page="personnages">Personnages</button></li>
+        <li><button class="tab-btn" data-page="univers">L'univers d'Angélia</button></li>
+        <li><button class="tab-btn" data-page="nouvelles">Nouvelles</button></li>
+        <li><button class="tab-btn" data-page="newsletter">Newsletter</button></li>
+      </ul>
+    </nav>
+
+    <!-- ================= PAGE ACCUEIL ================= -->
+    <div class="page active" id="page-accueil">
+      <header class="ciel">
+        <div class="etoile" style="top:12%;left:20%;width:2px;height:2px"></div>
+        <div class="etoile" style="top:22%;left:75%;width:3px;height:3px"></div>
+        <div class="etoile" style="top:8%;left:55%;width:2px;height:2px"></div>
+        <div class="etoile" style="top:30%;left:35%;width:2px;height:2px"></div>
+        <div class="etoile" style="top:15%;left:88%;width:2px;height:2px"></div>
+        <div class="etoile" style="top:38%;left:65%;width:2px;height:2px"></div>
+
+        <svg class="bouclier" viewBox="0 0 100 120" fill="none" aria-hidden="true">
+          <path d="M50 4 L92 20 C92 68, 74 102, 50 116 C26 102, 8 68, 8 20 Z"
+                stroke="#d4b06a" stroke-width="3" fill="rgba(212,176,106,0.06)"/>
+          <path d="M50 14 L83 26 C83 64, 69 93, 50 105 C31 93, 17 64, 17 26 Z"
+                stroke="#d4b06a" stroke-width="1" fill="none" opacity="0.5"/>
+          <path d="M50 32 C43 44, 42 58, 47 72 L50 82 L53 72 C58 58, 57 44, 50 32 Z"
+                stroke="#e8cf9a" stroke-width="2.2" fill="rgba(232,207,154,0.12)"/>
+          <path d="M50 38 C46 48, 45.5 58, 48 70" stroke="#a7c4b5" stroke-width="1" fill="none"/>
+          <circle cx="50" cy="24" r="1.8" fill="#e8cf9a"/>
+          <circle cx="38" cy="50" r="1.4" fill="#e8cf9a" opacity="0.7"/>
+          <circle cx="62" cy="58" r="1.4" fill="#e8cf9a" opacity="0.7"/>
+        </svg>
+
+        <p class="sur-titre">Ariane White présente la Saga Angélia</p>
+        <h1>The Shield <em>— Tome I —</em></h1>
+        <p class="sous-titre">
+          Dans un monde marqué par le déséquilibre, une petite équipe
+          essaye de tout changer. Avec, à la clé, un plan audacieux :
+          réussir là où même les dieux ont échoué. Sans aucune pression !
+        </p>
+        <button class="cta" data-goto="newsletter">Rejoindre les premiers lecteurs</button>
+        <button class="cta vert" id="btn-prologue">Lire un extrait</button>
+
+        <div id="bloc-prologue" style="display:none; max-width:720px; margin:3rem auto 0;">
+          <div class="page-herbier">
+            <p>Il était une fois…</p>
+            <p>Dans une légende obscure, remontant bien avant la création de l'espèce humaine, le monde était scindé en deux camps éternels : l'Ombre et la Lumière. À leur tête se trouvaient deux entités puissantes et opposées : Satan, maître des ténèbres, et Dieu, souveraine de la lumière.</p>
+            <p>
+              Dieu avait bâti un havre de paix et de prospérité, où elle et les anges vivaient en harmonie. Ils veillaient à maintenir l'équilibre entre le bien et le mal. Sous l'ordre de leur maîtresse, ils surveillaient l'ordre universel contre Satan et ses démons.
+            </p>
+            <p>
+              Cependant, on raconte que Satan, insatisfait de son royaume de ténèbres, prit la forme d'un bel ange et s'aventura chaque nuit dans le palais de Dieu, essayant de conquérir le cœur de la maîtresse des anges.
+            </p>
+            <p>
+              Pendant cent nuits, Satan, sous sa forme angélique, murmura des mots doux au creux de son oreille. Au centième jour, elle succomba et accepta de le suivre dans son royaume. Les anges crurent qu'en découvrant la tromperie, Dieu leur reviendrait. Mais elle ne revint jamais. Elle était tombée éperdument amoureuse de Satan, malgré son mensonge. Dieu resta à ses côtés par amour, et pour toujours.
+            </p>
+            <p>
+              Face à cette union, les anges se retrouvèrent seuls, sans aucun soutien face à la menace démoniaque — un déséquilibre s'installa dans l'ordre universel.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section>
+        <h2>Le récit</h2>
+        <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
+          <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
+          <line x1="228" y1="8" x2="400" y2="8" stroke="currentColor"/>
+          <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
+        </svg>
+        <p style="max-width:640px; margin:0 auto; text-align:center; color:#d8d3c6;">
+          [Petit résumé teasé du Tome I, sans spoil — 4 à 6 lignes.
+          Par exemple : qui est le bouclier, ce qui menace Angélia, et la promesse du livre.]
+        </p>
+      </section>
+    </div>
+
+    <!-- ================= PAGE PERSONNAGES ================= -->
+    <div class="page" id="page-personnages">
+      <section>
+        <h2>Personnages</h2>
+        <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
+          <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
+          <line x1="228" y1="8" x2="400" y2="8" stroke="currentColor"/>
+          <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
+        </svg>
+        <div class="persos">
+
+          <div class="fiche-perso">
+            <h3>Mihr</h3>
+            <p class="role">Ange gardien</p>
+            <p class="citation">« [Sa meilleure réplique du livre — à choisir dans le manuscrit.] »</p>
+            <p class="trait"><strong>Portrait.</strong> Plutôt grand, la peau blanche, des cheveux roux courts et bouclés, des yeux verts. Légèreté et humanité à l'état pur.</p>
+            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
+            <div class="secret"></div>
+          </div>
+
+          <div class="fiche-perso">
+            <h3>Khamael</h3>
+            <p class="role">Ange puissant — professeur à l'Académie de l'Horizon</p>
+            <p class="citation">« Alors, qui veut essayer de perdre un doigt aujourd'hui ? »</p>
+            <p class="trait"><strong>Portrait.</strong> Voûté, un œil caché sous un bandeau de cuir, les mains couvertes de cicatrices fines comme des dizaines de petites brûlures anciennes.</p>
+            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
+            <div class="secret"></div>
+          </div>
+
+          <div class="fiche-perso">
+            <h3>Dahlia</h3>
+            <p class="role">Ange gardien</p>
+            <p class="citation">« J'ai grandi avec les Cerfs-Volants, et on me racontait, petite, une légende de leur peuple. »</p>
+            <p class="trait"><strong>Portrait.</strong> Une femme de plutôt petite taille, la peau noire, les yeux et les cheveux bruns — des cheveux tressés, longs. Douce et timide, mais de celles qui ne reculent jamais quand il le faut.</p>
+            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
+            <div class="secret"></div>
+          </div>
+
+          <div class="fiche-perso">
+            <h3>Linus</h3>
+            <p class="role">Cerf-Volant</p>
+            <p class="citation">« [Une phrase viendra — les Cerfs-Volants préfèrent parler par leurs légendes.] »</p>
+            <p class="trait"><strong>Portrait.</strong> Un grand cerf blanc aux longues cornes. Son peuple garde de nombreuses légendes.</p>
+            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
+            <div class="secret"></div>
+          </div>
+
+          <div class="fiche-perso">
+            <h3>Ava</h3>
+            <p class="role">Ange clairvoyant — Pilier du Sommet</p>
+            <p class="citation">« [Sa citation viendra, quand elle voudra bien la laisser voir.] »</p>
+            <p class="trait"><strong>Portrait.</strong> Taille moyenne, cheveux bruns, bouclés, courts. Elle travaille au Pilier du Sommet, où elle veille sur des connaissances que bien peu peuvent approcher.</p>
+            <button class="btn-secret" disabled style="opacity:0.45; cursor:default;">Aucun secret à ce stade</button>
+            <div class="secret"></div>
+          </div>
+
+        </div>
+        <p class="mention" style="margin-top:2.5rem;">
+          D'autres noms apparaîtront plus tard — quand le Tome I sera entre les mains des lecteurs. 🕯️
+        </p>
+      </section>
+    </div>
+
+    <!-- ================= PAGE UNIVERS ================= -->
+    <div class="page" id="page-univers">
+      <section>
+        <h2>L'univers d'Angélia</h2>
+        <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
+          <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
+          <line x1="228" y1="8" x2="400" y2="8" stroke="currentColor"/>
+          <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
+        </svg>
+        <div class="archives">
+          <div class="fiche">
+            <p class="ref">Peuple</p>
+            <h3>Les Cerfs-Volants</h3>
+            <p>L'une des espèces créées par la main de Dieu. Ils vivaient au Royaume de Sucremiel, mais ont dû quitter leurs contrées pour rejoindre la Forêt du Nord.</p>
+          </div>
+          <div class="fiche">
+            <p class="ref">Mystère</p>
+            <h3>Les Runes</h3>
+            <p>Que peuvent-elles bien être ? Si mystérieuses et si peu connues.</p>
+          </div>
+          <div class="fiche">
+            <p class="ref">Lieu</p>
+            <h3>Le Pilier du Sommet</h3>
+            <p>Une grande tour qui s'élève vers les cieux sans jamais les atteindre. C'est le lieu où veillent les Clairvoyants. Auriez-vous le courage d'y pénétrer ?</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= PAGE NOUVELLES ================= -->
+    <div class="page" id="page-nouvelles">
+      <section>
+        <h2>Nouvelles</h2>
+        <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
+          <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
+          <line x1="228" y1="8" x2="400" y2="8" stroke="currentColor"/>
+          <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
+        </svg>
+        <ul class="liste-nouvelles">
+          <li>
+            <div><h3>[Titre de la première nouvelle]</h3><p>[Une ligne d'accroche — par exemple sur un personnage externe au tome.]</p></div>
+            <span class="bientot">À paraître</span>
+          </li>
+          <li>
+            <div><h3>[Titre de la deuxième nouvelle]</h3><p>[Une ligne d'accroche.]</p></div>
+            <span class="bientot">À paraître</span>
+          </li>
+        </ul>
+        <p class="mention" style="margin-top:2rem;">Les nouvelles paraîtront d'abord dans la newsletter, puis ici. La galerie ouvrira à la sortie du livre.</p>
+      </section>
+    </div>
+
+    <!-- ================= PAGE NEWSLETTER ================= -->
+    <div class="page" id="page-newsletter">
+      <section id="newsletter">
+        <h2>Les premiers lecteurs</h2>
+        <svg class="filet" viewBox="0 0 400 16" fill="none" aria-hidden="true">
+          <line x1="0" y1="8" x2="172" y2="8" stroke="currentColor"/>
+          <line x1="228" y1="8" x2="400" y2="8" stroke="currentColor"/>
+          <path d="M200 2 C204 6, 204 10, 200 14 C196 10, 196 6, 200 2 Z" fill="#d4b06a"/>
+        </svg>
+        <div class="boite-news">
+          <p class="accroche">
+            Angélia n'est pas encore ouverte à tous. Rejoins les premiers lecteurs :
+            les nouvelles exclusives, les extraits, et les légendes avant tout le monde.
+          </p>
+          <ul class="liste-points">
+            <li>Une nouvelle inédite de l'univers, chaque mois</li>
+            <li>Des extraits du Tome I en avant-première</li>
+            <li>Les coulisses de l'écriture d'Ariane White</li>
+          </ul>
+          <!--
+            ⬇⬇⬇ À REMPLACER PAR LE FORMULAIRE BREVO ⬇⬇⬇
+            Une fois ton compte Brevo créé, remplace tout le bloc <form>…</form>
+            par le code d'intégration que Brevo te fournit.
+          -->
+          <form id="form-newsletter">
+            <input type="email" id="email" placeholder="ton.adresse@exemple.com" required />
+            <button type="submit" class="envoyer">S'abonner</button>
+          </form>
+          <p class="message-merci" id="merci"></p>
+          <p class="note-brevo">Démo : ce formulaire ne collecte rien. Il sera branché sur ta liste Brevo.</p>
+        </div>
+      </section>
+    </div>
+
+    <footer class="ciel">
+      © <span id="annee"></span> Ariane White — La Saga Angélia · Tous droits réservés<br />
+      <a href="#" onclick="allerPage('newsletter'); return false;">Newsletter</a> ·
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://tiktok.com" target="_blank" rel="noopener">TikTok</a>
+      <br /><em>[Lien mentions légales / contact pro — en nom de plume]</em>
+    </footer>
+
+    <script>
+      // ===== Navigation par onglets =====
+      function allerPage(id) {
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        document.getElementById("page-" + id).classList.add("active");
+        document.querySelectorAll(".tab-btn").forEach(b =>
+          b.classList.toggle("actif", b.dataset.page === id));
+        window.scrollTo({ top: 0 });
+      }
+      document.querySelectorAll(".tab-btn").forEach(btn =>
+        btn.addEventListener("click", () => allerPage(btn.dataset.page)));
+      document.querySelectorAll("[data-goto]").forEach(btn =>
+        btn.addEventListener("click", () => allerPage(btn.dataset.goto)));
+      // ===== Prologue dépliable =====
+      document.getElementById("btn-prologue").addEventListener("click", function () {
+        var b = document.getElementById("bloc-prologue");
+        b.style.display = (b.style.display === "none") ? "block" : "none";
+        this.textContent = (b.style.display === "block") ? "Refermer l'extrait" : "Lire un extrait";
+      });
+      // ===== Secrets (spoilers) =====
+      document.querySelectorAll(".btn-secret").forEach(btn =>
+        btn.addEventListener("click", () => btn.nextElementSibling.classList.toggle("ouvert")));
+      // ===== Année + formulaire démo =====
+      document.getElementById("annee").textContent = new Date().getFullYear();
+      document.getElementById("form-newsletter").addEventListener("submit", function (e) {
+        e.preventDefault();
+        document.getElementById("merci").textContent =
+          "Merci ! (Formulaire Brevo à brancher — rien n'est collecté ici.)";
+        this.reset();
+      });
+    </script>
+  </body>
+</html>
